@@ -48,7 +48,7 @@ fun HomePane() {
             pane = ListDetailPaneScaffoldRole.Detail, content = id
         )
     }
-    val detailVisible = navigator.scaffoldValue.primary == PaneAdaptedValue.Expanded
+    val detailVisible = navigator.scaffoldValue[ListDetailPaneScaffoldRole.Detail] == PaneAdaptedValue.Expanded
     if (detailVisible && currentIndex == -1) currentIndex = 0
     BackHandler(navigator.canNavigateBack()) { navigator.navigateBack() }
     ListDetailPaneScaffold(directive = navigator.scaffoldDirective,
@@ -62,7 +62,7 @@ fun HomePane() {
         },
         detailPane = {
             MyListDetail(currentIndex = currentIndex,
-                listHidden = navigator.scaffoldValue.secondary == PaneAdaptedValue.Hidden,
+                listHidden = navigator.scaffoldValue[ListDetailPaneScaffoldRole.List] == PaneAdaptedValue.Hidden,
                 onBackClicked = { navigator.navigateBack() })
         })
 }
